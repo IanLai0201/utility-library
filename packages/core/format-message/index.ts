@@ -16,11 +16,13 @@ function escape(value: string): string {
  *
  * @example
  *
+ * ```ts
  * // 傳入陣列，依陣列 index 替換相對應位置
  * formatMessage('範例文字: {{0}}', ['替']);
  *
  * // 傳入物件，依物件 key 替換相對應位置
  * formatMessage('{{a}} 範例文字: {{b}}', { a: '替1', b: '替2' });
+ * ```
  *
  * @param {string} msg 文字樣版
  * @param {Args} args 替換參數

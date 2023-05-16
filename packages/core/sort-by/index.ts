@@ -62,6 +62,10 @@ function compareValue(a: any, b: any): number {
     return compareBoolean(a, b);
   }
 
+  warn(
+    `field value is not handled by a defined type handler. get A value is ${a}, B value is ${b}.`
+  );
+
   return a - b;
 }
 
@@ -117,15 +121,24 @@ function compareFactory({ sort, order }: Sort) {
     }
 
     if (isNaN(result)) {
-      console.warn(
-        `[Util warn] util 'sortBy' compare warning, field compare get NaN. compare field name is '${sort}', A value is '${valueA}', B value is '${valueB}'.`
+      warn(
+        `field compare get NaN. compare field name is '${sort}', A value is '${valueA}', B value is '${valueB}'.`
       );
 
-      return -Infinity;
+      return 0;
     }
 
     return result;
   };
+}
+
+/**
+ * Util console warn
+ *
+ * @param message
+ */
+function warn(message: string) {
+  console.warn(`[Util warn] util 'sortBy' compare warning, ${message}`);
 }
 
 /**
@@ -135,6 +148,7 @@ function compareFactory({ sort, order }: Sort) {
  *
  * @example
  *
+ * ```ts
  * const array = [
  *   {
  *     a: 1,
@@ -169,6 +183,7 @@ function compareFactory({ sort, order }: Sort) {
  *     order: [3], // 參考陣列
  *   },
  * ]);
+ * ```
  *
  * @param value 陣列
  * @param sorts 排序條件
