@@ -13,16 +13,23 @@ export enum SortOrder {
   Desc,
 }
 
-export type Sort = {
+/**
+ * 排序條件
+ */
+export type Sort<T = any> = {
   /**
-   * 條件欄位
+   * 條件欄位，支持 Object path
+   *
+   * 參考 lodash.get 取值
    */
   sort: string;
 
   /**
-   * 排序方法，Asc 或 Desc，也可使用陣列做排序參考
+   * 排序方法
+   *
+   * Asc 或 Desc，陣列做排序參考，或自定義排序 Function
    */
-  order: SortOrder | any[];
+  order: SortOrder | T[] | ((valueA: T, valueB: T) => number);
 };
 
 function compareString(a: string, b: string): number {
@@ -103,21 +110,29 @@ function compareFactory({ sort, order }: Sort) {
 
     let result: number;
 
-    switch (order) {
-      case SortOrder.Asc:
-        result = compareValue(valueA, valueB);
-        break;
+    // asc
+    if (order === SortOrder.Asc) {
+      result = compareValue(valueA, valueB);
+    }
 
-      case SortOrder.Desc:
-        result = compareValue(valueB, valueA);
-        break;
+    // desc
+    else if (order === SortOrder.Desc) {
+      result = compareValue(valueB, valueA);
+    }
 
-      default:
-        if (Array.isArray(order)) {
-          result = compareValueByReference(valueA, valueB, order);
-        } else {
-          result = 0;
-        }
+    // reference array
+    else if (Array.isArray(order)) {
+      result = compareValueByReference(valueA, valueB, order);
+    }
+
+    // custom function
+    else if (typeof order === 'function') {
+      result = order(valueA, valueB);
+    }
+
+    // default
+    else {
+      result = 0;
     }
 
     if (isNaN(result)) {
@@ -183,6 +198,20 @@ function warn(message: string) {
  *     order: [3], // 參考陣列
  *   },
  * ]);
+ *
+ * // 自定義排序 Function
+ * sortBy(array, [
+ *   {
+ *     sort: 'a',
+ *     order: SortOrder.Asc,
+ *   },
+ *   {
+ *     sort: 'b',
+ *     order: (valueA, valueB) => {
+ *       return valueA - valueB
+ *     },
+ *   },
+ * ]);
  * ```
  *
  * @param value 陣列
@@ -190,7 +219,12 @@ function warn(message: string) {
  * @returns
  */
 export function sortBy<T extends Record<string, any>>(value: T[], sorts: Sort[]): T[];
-export function sortBy<T extends Record<string, any>>(value: T[], ...sorts: Sort[]): T[];
+export function sortBy<T extends Record<string, any>, S = any>(value: T[], sorts: Sort<S>[]): T[];
+export function sortBy<T extends Record<string, any>, S = any>(
+  value: T[],
+  ...sorts: Sort<S>[]
+): T[];
+
 export function sortBy<T extends Record<string, any>>(
   value: T[],
   arg1: Sort | Sort[],
