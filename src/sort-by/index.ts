@@ -1,3 +1,5 @@
+import { get } from 'lodash-es';
+
 /**
  * 排序升冪/降冪
  */
@@ -104,9 +106,8 @@ function compareValueByReference(a: any, b: any, reference: any[]): number {
  */
 function compareFactory({ sort, order }: Sort) {
   return (a: any, b: any) => {
-    // TODO support deep fields
-    const valueA = a[sort];
-    const valueB = b[sort];
+    const valueA = get(a, sort);
+    const valueB = get(b, sort);
 
     let result: number;
 
@@ -225,11 +226,7 @@ export function sortBy<T extends Record<string, any>, S = any>(
   ...sorts: Sort<S>[]
 ): T[];
 
-export function sortBy<T extends Record<string, any>>(
-  value: T[],
-  arg1: Sort | Sort[],
-  ...args: Sort[]
-): T[] {
+export function sortBy(value: any[], arg1: Sort | Sort[], ...args: Sort[]): any[] {
   if (Array.isArray(arg1)) {
     args = arg1;
   } else {

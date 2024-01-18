@@ -1,14 +1,28 @@
 {
-  "name": "utils",
+  "name": "utility-library",
   "version": "1.0.0",
   "description": "",
-  "scripts": {
-    "lint": "eslint . --fix --ignore-path .gitignore"
-  },
   "keywords": [],
   "author": "Ian Lai",
   "license": "MIT",
+  "packageManager": "pnpm@8.6.8",
+  "volta": {
+    "node": "18.16.0"
+  },
+  "engines": {
+    "node": "^18 || >=20",
+    "pnpm": ">=8"
+  },
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "test:unit": "vitest --passWithNoTests --watch false",
+    "lint": "eslint . --fix --ignore-path .gitignore"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.21"
+  },
   "devDependencies": {
+    "@types/lodash-es": "^4.17.12",
     "@types/node": "^18.16.1",
     "@typescript-eslint/eslint-plugin": "^5.43.0",
     "eslint": "^8.39.0",
@@ -19,6 +33,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.0.0",
     "prettier": "^2.8.8",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "vitest": "^1.2.1"
   }
 }

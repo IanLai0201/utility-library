@@ -1,15 +1,7 @@
+import { escapeRegExp } from 'lodash-es';
+
 export type Args = string[] | { [key: string]: any };
 export type Template = { start: string; end?: string };
-
-/**
- * 字符串正規表達式轉義函數
- *
- * @param {string} value 要轉義的字符串
- * @returns {string} 轉義後的字符串
- */
-function escape(value: string): string {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
 
 /**
  * 格式化文字
@@ -34,8 +26,8 @@ export function formatMessage(
   args: Args,
   template: Template = { start: '{{', end: '}}' }
 ): string {
-  const start = escape(template.start);
-  const end = escape(template.end || '');
+  const start = escapeRegExp(template.start);
+  const end = escapeRegExp(template.end || '');
 
   const regExp = new RegExp(`${start}([\\w\\d]+)${end}`, 'gi');
 
