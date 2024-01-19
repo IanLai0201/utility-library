@@ -13,3 +13,13 @@ export function toThousandths(value: number | string | null | undefined) {
 
   return String(value).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 }
+
+/**
+ * 移除千分位符號
+ *
+ * @param value
+ * @returns
+ */
+export function removeThousands(value: string) {
+  return value.replace(/,/g, '');
+}
