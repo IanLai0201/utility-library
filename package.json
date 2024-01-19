@@ -9,6 +9,12 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
   "files": [
     "dist"
   ],
@@ -24,7 +30,7 @@
     "prepare": "husky install",
     "preinstall": "npx only-allow pnpm",
     "build": "rollup -c",
-    "test:unit": "vitest --passWithNoTests --watch false",
+    "test": "vitest --passWithNoTests --watch false",
     "lint": "eslint . --fix --ignore-path .gitignore",
     "format": "prettier --write ./"
   },
@@ -45,8 +51,7 @@
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-esbuild": "^6.1.0",
     "typescript": "^5.3.3",
-    "vite": "^5.0.11",
-    "vitest": "^1.2.1"
+    "vitest": "^0.34.6"
   },
   "lint-staged": [
     "prettier --write --ignore-unknown",
