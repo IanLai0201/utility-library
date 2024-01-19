@@ -1,9 +1,12 @@
 import dts from 'rollup-plugin-dts';
 import esbuild from 'rollup-plugin-esbuild';
 
+const input = 'src/index.ts';
+const external = ['lodash-es'];
+
 export default [
   {
-    input: 'src/index.ts',
+    input,
     plugins: [esbuild()],
     output: [
       {
@@ -17,15 +20,15 @@ export default [
         sourcemap: true,
       },
     ],
-    external: (id) => !/^[./]/.test(id),
+    external,
   },
   {
-    input: 'src/index.ts',
+    input,
     plugins: [dts()],
     output: {
       file: `dist/index.d.ts`,
       format: 'es',
     },
-    external: (id) => !/^[./]/.test(id),
+    external,
   },
 ];

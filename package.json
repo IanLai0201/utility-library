@@ -6,9 +6,12 @@
   "author": "Ian Lai",
   "license": "MIT",
   "type": "module",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "typings": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "packageManager": "pnpm@8.6.8",
   "volta": {
     "node": "18.16.0"
@@ -39,7 +42,7 @@
     "rollup": "^4.9.5",
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-esbuild": "^6.1.0",
-    "typescript": "^5.0.4",
+    "typescript": "^5.3.3",
     "vitest": "^1.2.1"
   },
   "lint-staged": [
