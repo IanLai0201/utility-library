@@ -16,7 +16,7 @@
   "cSpell.allowCompoundWords": true,
 
   // vitest
-  "vitest.commandLine": "npx vitest",
+  "vitest.commandLine": "vitest",
 
   // TypeScript Version
   "typescript.tsdk": "node_modules/typescript/lib",
