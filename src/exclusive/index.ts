@@ -1,9 +1,7 @@
-import { isPromise } from '../shared/is-promise';
-
 /**
  * 事件鎖，防止連續點擊
  *
- * @param func
+ * @param cb
  *
  * @example
  * ```ts
@@ -27,14 +25,12 @@ export function exclusive<T extends (...args: any[]) => any | Promise<any>>(func
 
     const result = func(...args);
 
-    if (isPromise(result)) {
+    if (result instanceof Promise) {
       result.finally(() => {
         lock = false;
       });
     } else {
-      setTimeout(() => {
-        lock = false;
-      });
+      lock = false;
     }
   };
 }

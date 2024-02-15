@@ -7,10 +7,24 @@ describe('exclusive', () => {
     vi.useFakeTimers();
   });
 
-  it('exclusive excute function', async () => {
+  it('excute function after synchronous function', () => {
     let count = 0;
 
-    const execPromise = exclusive((args: string) => {
+    const execFunction = exclusive((...args: any) => {
+      count++;
+      return args;
+    });
+
+    execFunction('1');
+    expect(count).toBe(1);
+    execFunction('2');
+    expect(count).toBe(2);
+  });
+
+  it('stop excute function when last asynchronous function not finish', async () => {
+    let count = 0;
+
+    const execPromise = exclusive((...args: any) => {
       count++;
 
       return new Promise((resolve) => {
@@ -32,10 +46,27 @@ describe('exclusive', () => {
 
     await vi.runAllTimersAsync();
     expect(count).toBe(1);
+  });
+
+  it('excute function after last asynchronous function', async () => {
+    let count = 0;
+
+    const execPromise = exclusive((...args: any) => {
+      count++;
+
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(args);
+        }, 2000);
+      });
+    });
+
+    execPromise('1');
+    expect(count).toBe(1);
 
     // await 3sec
     setTimeout(() => {
-      execPromise('4');
+      execPromise('2');
     }, 3000);
 
     await vi.runAllTimersAsync();
