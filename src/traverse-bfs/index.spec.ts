@@ -41,7 +41,7 @@ describe('traverseBFS', () => {
       return id === '1.1.1.1';
     });
 
-    expect(result).not.toBeNull();
+    expect(result).toStrictEqual({ id: '1.1.1.1' });
     expect(count).toBe(7);
   });
 });

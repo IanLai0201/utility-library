@@ -16,7 +16,7 @@ describe('sortBy', () => {
           { sort: 'b', order: SortOrder.Desc },
         ]
       )
-    ).toEqual([
+    ).toStrictEqual([
       { a: 1, b: 3 },
       { a: 1, b: 2 },
     ]);
@@ -33,7 +33,7 @@ describe('sortBy', () => {
           { sort: 'b', order: SortOrder.Desc },
         ]
       )
-    ).toEqual([
+    ).toStrictEqual([
       { a: 1, b: 'ac' },
       { a: 1, b: 'ab' },
     ]);
@@ -50,7 +50,7 @@ describe('sortBy', () => {
           { sort: 'b', order: SortOrder.Desc },
         ]
       )
-    ).toEqual([
+    ).toStrictEqual([
       { a: 1, b: new Date('2024/01/02') },
       { a: 1, b: new Date('2024/01/01') },
     ]);
@@ -67,7 +67,7 @@ describe('sortBy', () => {
           { sort: 'b', order: SortOrder.Desc },
         ]
       )
-    ).toEqual([
+    ).toStrictEqual([
       { a: 1, b: true },
       { a: 1, b: false },
     ]);
@@ -86,7 +86,7 @@ describe('sortBy', () => {
           { sort: 'b', order: [3, 2, 1] },
         ]
       )
-    ).toEqual([
+    ).toStrictEqual([
       { a: 1, b: 3 },
       { a: 1, b: 2 },
     ]);
@@ -103,7 +103,7 @@ describe('sortBy', () => {
           { sort: 'b', order: ['ac', 'ab'] },
         ]
       )
-    ).toEqual([
+    ).toStrictEqual([
       { a: 1, b: 'ac' },
       { a: 1, b: 'ab' },
     ]);
@@ -126,7 +126,7 @@ describe('sortBy', () => {
           },
         ]
       )
-    ).toEqual([
+    ).toStrictEqual([
       { a: 1, b: 2 },
       { a: 1, b: 3 },
     ]);
