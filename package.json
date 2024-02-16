@@ -29,7 +29,7 @@
   "scripts": {
     "prepare": "husky install",
     "preinstall": "npx only-allow pnpm",
-    "build": "rollup -c",
+    "build": "rollup --config=rollup.config.ts --configPlugin=rollup-plugin-esbuild",
     "test": "vitest --passWithNoTests --watch false",
     "lint": "eslint . --fix --ignore-path .gitignore",
     "format": "prettier --write ./"
