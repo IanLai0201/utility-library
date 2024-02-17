@@ -6,19 +6,6 @@
   "author": "Ian Lai",
   "license": "MIT",
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
-    }
-  },
-  "files": [
-    "dist"
-  ],
   "packageManager": "pnpm@8.6.8",
   "volta": {
     "node": "18.16.0"
@@ -33,6 +20,7 @@
     "build": "ts-node-esm scripts/build.ts",
     "build:rollup": "rollup --config=rollup.config.ts --configPlugin=rollup-plugin-esbuild",
     "clean": "rm -rf ./dist",
+    "release": "cd ./dist && pnpm publish",
     "test": "vitest --passWithNoTests --watch false",
     "lint": "eslint . --fix --ignore-path .gitignore",
     "format": "prettier --write ./"
@@ -62,8 +50,5 @@
   "lint-staged": [
     "prettier --write --ignore-unknown",
     "eslint --fix"
-  ],
-  "publishConfig": {
-    "@dev-toolkits:registry": "https://gitlab.com/api/v4/projects/55027941/packages/npm/"
-  }
+  ]
 }

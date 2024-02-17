@@ -29,12 +29,10 @@ getFiles('src').forEach((fn) => {
       {
         file: `dist/${fnName.replace('.ts', '.js')}`,
         format: 'cjs',
-        sourcemap: true,
       },
       {
         file: `dist/${fnName.replace('.ts', '.mjs')}`,
         format: 'esm',
-        sourcemap: true,
       },
     ],
     external: ['lodash-es'],
@@ -46,16 +44,8 @@ getFiles('src').forEach((fn) => {
     plugins: [dts()],
     output: [
       {
-        file: `dist/${fnName.replace('.ts', '.d.mts')}`,
-        format: 'esm',
-      },
-      {
         file: `dist/${fnName.replace('.ts', '.d.ts')}`,
         format: 'esm',
-      },
-      {
-        file: `dist/${fnName.replace('.ts', '.d.cts')}`,
-        format: 'cjs',
       },
     ],
     external: [],
