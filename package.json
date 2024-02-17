@@ -1,5 +1,5 @@
 {
-  "name": "utility-library",
+  "name": "@dev-toolkits/utility-library",
   "version": "1.0.0",
   "description": "",
   "keywords": [],
@@ -11,8 +11,9 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
     }
   },
   "files": [
@@ -61,5 +62,8 @@
   "lint-staged": [
     "prettier --write --ignore-unknown",
     "eslint --fix"
-  ]
+  ],
+  "publishConfig": {
+    "@dev-toolkits:registry": "https://gitlab.com/api/v4/projects/55027941/packages/npm/"
+  }
 }
