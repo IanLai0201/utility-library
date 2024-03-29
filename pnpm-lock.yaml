@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  lodash-es:
+    specifier: ^4.17.21
+    version: 4.17.21
+
 devDependencies:
   '@commitlint/cli':
     specifier: ^18.6.1
@@ -50,9 +55,6 @@ devDependencies:
   lint-staged:
     specifier: ^15.2.0
     version: 15.2.0
-  lodash-es:
-    specifier: ^4.17.21
-    version: 4.17.21
   prettier:
     specifier: ^2.8.8
     version: 2.8.8
@@ -951,7 +953,7 @@ packages:
       debug: 4.3.4
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.5.4
+      semver: 7.6.0
       tsutils: 3.21.0(typescript@5.3.3)
       typescript: 5.3.3
     transitivePeerDependencies:
@@ -2594,7 +2596,7 @@ packages:
 
   /lodash-es@4.17.21:
     resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
-    dev: true
+    dev: false
 
   /lodash.camelcase@4.3.0:
     resolution: {integrity: sha512-TwuEnCnxbc3rAvhf/LbG7tJUDzhqXyFnv3dtzLOPgCG/hODL7WFnsbwktkD7yUV0RrreP/l1PALq/YSg6VvjlA==}
