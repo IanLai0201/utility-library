@@ -54,14 +54,14 @@ function buildMetaFiles() {
   fs.copySync(path.join(rootDir, 'LICENSE'), path.join(distDir, 'LICENSE'));
 }
 
-async function build() {
+function build() {
   console.log('Clean up');
-  exec('pnpm run clean', { stdio: 'inherit' });
+  exec('rm -rf ./dist', { stdio: 'inherit' });
 
   console.log('Rollup');
   exec(`pnpm run build:rollup`, { stdio: 'inherit' });
 
-  await buildMetaFiles();
+  buildMetaFiles();
 }
 
 build();
